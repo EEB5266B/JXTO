@@ -1,0 +1,24 @@
+<configuration>
+
+    <property name="FILE_PATH" value="logs/app.log"/>
+    <property name="CONSOLE-PATTERN" value="%highlight(%.-1level) %green(%date{HH:mm:ss.SSS}) [%gray(%thread)] %blue(%-20.20logger{15}) |-> %cyan(%msg) %n"/>
+    <property name="FILE-PATTERN" value="%-5level %date %X{tid} [%thread] %logger %msg %n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE-PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${FILE_PATH}</file>
+        <encoder>
+            <pattern>${FILE-PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

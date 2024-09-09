@@ -1,0 +1,6 @@
+system:
+  # ALL TRACE DEBUG INFO WARN ERROR OFF
+  logLevel: INFO
+
+hotKey:
+  start: f11
