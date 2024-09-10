@@ -1,7 +1,8 @@
 package com.f5fe18bc.jxto;
 
-import com.f5fe18bc.jxto.application.HotKeyListener;
-import com.f5fe18bc.jxto.application.Log;
+import com.f5fe18bc.jxto.application.HotKeyApp;
+import com.f5fe18bc.jxto.application.LogApp;
+import com.f5fe18bc.jxto.application.WindowAPP;
 import com.f5fe18bc.jxto.config.Settings;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -39,9 +40,10 @@ public class APP extends Application {
     public static void initConfig() {
         Settings settings = Settings.getSettings();
 
-        Log.changeRootLevel(settings.getSystem().getLogLevel());
-        HotKeyListener.registerHotKey(settings.getHotKey());
-        HotKeyListener.startHotKeyListener();
+        LogApp.changeRootLevel(settings.getSystem().getLogLevel());
+        HotKeyApp.registerHotKey(settings.getHotKey());
+        HotKeyApp.startHotKeyListener();
+        WindowAPP.getAll();
     }
 
     @Override
@@ -132,7 +134,7 @@ public class APP extends Application {
     public void stop() throws Exception {
         super.stop();
         logger.info("stop app");
-        HotKeyListener.unregisterHotKey();
+        HotKeyApp.unregisterHotKey();
         System.exit(0);
     }
 }

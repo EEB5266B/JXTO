@@ -9,6 +9,8 @@ module com.f5fe18bc.jxto {
     requires org.slf4j;
     requires org.yaml.snakeyaml;
     requires org.apache.commons.lang3;
+    requires com.sun.jna;
+    requires com.sun.jna.platform;
 
     exports com.f5fe18bc.jxto.config to org.yaml.snakeyaml;
 

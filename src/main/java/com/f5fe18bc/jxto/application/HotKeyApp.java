@@ -15,10 +15,10 @@ import java.util.List;
 /**
  * 热键
  */
-public class HotKeyListener {
+public class HotKeyApp {
 
     public static final List<HotKey> hotKeyList = new ArrayList<>();
-    private static final Logger logger = LoggerFactory.getLogger(HotKeyListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(HotKey.class);
 
     public static void registerHotKey(Settings.HotKey hotKey) {
 
@@ -77,28 +77,16 @@ public class HotKeyListener {
         }
     }
 
-    /**
-     * 创建热键对象
-     *
-     * @param identifier         热键标识符
-     * @param modifierAndKeyCode 热键组合（e.g. CTRL+SHIFT+A）
-     * @return 热键对象
-     */
-    public static HotKey hotKey(HotKeyIdentifier identifier, String... modifierAndKeyCode) {
-        return new HotKey(identifier, String.join("+", modifierAndKeyCode).toUpperCase());
-    }
-
-    /**
-     * 创建热键对象
-     *
-     * @param identifier         热键标识符
-     * @param modifierAndKeyCode 热键
-     * @return 热键对象
-     */
-    public static HotKey hotKey(HotKeyIdentifier identifier, String modifierAndKeyCode) {
-        return new HotKey(identifier, modifierAndKeyCode);
-    }
-
     public record HotKey(HotKeyIdentifier identifier, String modifierAndKeyCode) {
+
+        /**
+         * 创建热键对象
+         *
+         * @param identifier         热键标识符
+         * @param modifierAndKeyCode 热键组合（e.g. CTRL+SHIFT+A）
+         */
+        public HotKey(HotKeyIdentifier identifier, String... modifierAndKeyCode) {
+            this(identifier, String.join("+", modifierAndKeyCode).toUpperCase());
+        }
     }
 }

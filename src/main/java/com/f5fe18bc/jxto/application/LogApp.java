@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 /**
  * 日志
  */
-public class Log {
+public class LogApp {
 
     // 定义一个静态的Logger对象，用于记录日志
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(Log.class);
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LogApp.class);
 
     /**
      * 修改指定名称的logger对象的日志级别
