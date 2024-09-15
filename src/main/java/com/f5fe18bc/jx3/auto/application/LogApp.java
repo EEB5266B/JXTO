@@ -1,17 +1,16 @@
-package com.f5fe18bc.jxto.application;
+package com.f5fe18bc.jx3.auto.application;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 
 /**
  * 日志
  */
+@Slf4j
 public class LogApp {
-
-    // 定义一个静态的Logger对象，用于记录日志
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(LogApp.class);
 
     /**
      * 修改指定名称的logger对象的日志级别
@@ -21,7 +20,7 @@ public class LogApp {
      */
     public static void changeLevel(String loggerName, Level level) {
         // 输出警告日志，记录即将修改的日志级别
-        logger.warn("修改 {} Log 级别为 {}", loggerName, level);
+        log.warn("修改 {} Log 级别为 {}", loggerName, level);
 
         // 获取LoggerFactory的上下文对象
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();

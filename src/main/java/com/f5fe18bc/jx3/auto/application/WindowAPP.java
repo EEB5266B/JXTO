@@ -1,5 +1,6 @@
-package com.f5fe18bc.jxto.application;
+package com.f5fe18bc.jx3.auto.application;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.LoggerFactory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
@@ -9,9 +10,8 @@ import com.sun.jna.platform.win32.WinDef.RECT;
 import com.sun.jna.platform.win32.WinUser.WNDENUMPROC;
 
 
+@Slf4j
 public class WindowAPP {
-
-    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(WindowAPP.class);
 
     public static void getAll() {
         final User32 user32 = User32.INSTANCE;
@@ -37,6 +37,4 @@ public class WindowAPP {
             }
         }, null);
     }
-
-
 }

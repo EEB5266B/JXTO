@@ -1,11 +1,10 @@
-package com.f5fe18bc.jxto.application;
+package com.f5fe18bc.jx3.auto.application;
 
-import com.f5fe18bc.jxto.config.Settings;
-import com.f5fe18bc.jxto.enums.HotKeyIdentifier;
+import com.f5fe18bc.jx3.auto.enums.HotKeyIdentifier;
+import com.f5fe18bc.jx3.auto.config.Settings;
 import com.melloware.jintellitype.JIntellitype;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,11 +14,10 @@ import java.util.List;
 /**
  * 热键
  */
+@Slf4j
 public class HotKeyApp {
 
     public static final List<HotKey> hotKeyList = new ArrayList<>();
-    private static final Logger logger = LoggerFactory.getLogger(HotKey.class);
-
     public static void registerHotKey(Settings.HotKey hotKey) {
 
         if (hotKey != null) {
@@ -30,21 +28,21 @@ public class HotKeyApp {
 
             hotKeyList.forEach(k -> {
 
-                if (logger.isDebugEnabled()) {
-                    logger.debug("registerHotKey: key {}, value {}", k.identifier.getKey(), k.modifierAndKeyCode);
+                if (log.isDebugEnabled()) {
+                    log.debug("registerHotKey: key {}, value {}", k.identifier.getKey(), k.modifierAndKeyCode);
                 }
                 JIntellitype.getInstance().registerHotKey(k.identifier.getKey(), k.modifierAndKeyCode);
             });
         } else {
-            logger.warn("hotkey settings is empty");
+            log.warn("hotkey settings is empty");
         }
     }
 
     public static void unregisterHotKey() {
         hotKeyList.forEach(k -> {
 
-            if (logger.isDebugEnabled()) {
-                logger.debug("unregisterHotKey: key {}", k.identifier.getKey());
+            if (log.isDebugEnabled()) {
+                log.debug("unregisterHotKey: key {}", k.identifier.getKey());
             }
             JIntellitype.getInstance().unregisterHotKey(k.identifier.getKey());
         });
@@ -57,8 +55,8 @@ public class HotKeyApp {
 
             JIntellitype.getInstance().addHotKeyListener(markCode -> {
 
-                if (logger.isDebugEnabled()) {
-                    logger.debug("HotKeyListener: key {}", markCode);
+                if (log.isDebugEnabled()) {
+                    log.debug("HotKeyListener: key {}", markCode);
                 }
 
                 if (HotKeyIdentifier.START.getKey() == markCode) {
@@ -72,7 +70,7 @@ public class HotKeyApp {
             });
         } catch (AWTException e) {
 
-            logger.error("Unexpected error", e);
+            log.error("Unexpected error", e);
             throw new RuntimeException(e);
         }
     }

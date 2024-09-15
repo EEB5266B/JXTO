@@ -1,7 +1,7 @@
-package com.f5fe18bc.jxto.config;
+package com.f5fe18bc.jx3.auto.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -13,9 +13,10 @@ import java.nio.file.Paths;
 /**
  * 设置类，用于读取和管理应用程序的设置
  */
+@Slf4j
+@Data
 public class Settings {
 
-    private static final Logger logger = LoggerFactory.getLogger(Settings.class);
     private static final String SETTINGS_FILE = "settings.yaml";
     private static Settings settings;
 
@@ -44,7 +45,7 @@ public class Settings {
 
         // 检查项目根目录下的 settings.yaml 是否存在
         if (!Files.exists(projectSettingsPath)) {
-            logger.info("The system starts initializing the default configuration");
+            log.info("The system starts initializing the default configuration");
 
             // resources 目录下的 settings.yaml 文件路径
             URL resourceUrl = Settings.class.getClassLoader().getResource(SETTINGS_FILE);
@@ -58,70 +59,40 @@ public class Settings {
                     }
                 } catch (IOException e) {
                     // 复制失败时输出错误信息
-                    logger.error("copy settings.yaml error: ", e);
+                    log.error("copy settings.yaml error: ", e);
                     throw new RuntimeException(e);
                 }
             } else {
                 // 如果 resources 下没有找到 settings.yaml 文件，则输出错误信息
-                logger.error("{} file does not exist", SETTINGS_FILE);
+                log.error("{} file does not exist", SETTINGS_FILE);
                 throw new RuntimeException("file does not exist");
             }
         } else {
-            logger.info("The system uses the configuration file in the project directory");
+            log.info("The system uses the configuration file in the project directory");
         }
 
         try (InputStream inputStream = new FileInputStream(projectSettingsPath.toFile())) {
             return new Yaml().loadAs(inputStream, Settings.class);
         } catch (FileNotFoundException e) {
             // 文件不存在时输出错误信息
-            logger.error("{} file does not exist", SETTINGS_FILE, e);
+            log.error("{} file does not exist", SETTINGS_FILE, e);
             throw new RuntimeException(e);
         } catch (IOException e) {
             // 其他读取文件时的错误信息
-            logger.error("{} file error", SETTINGS_FILE, e);
+            log.error("{} file error", SETTINGS_FILE, e);
             throw new RuntimeException(e);
         }
     }
 
-    public HotKey getHotKey() {
-        return hotKey;
-    }
-
-    public void setHotKey(HotKey hotKey) {
-        this.hotKey = hotKey;
-    }
-
-    public System getSystem() {
-        return system;
-    }
-
-    public void setSystem(System system) {
-        this.system = system;
-    }
-
+    @Data
     public static class System {
 
         private String logLevel;
-
-        public String getLogLevel() {
-            return logLevel;
-        }
-
-        public void setLogLevel(String logLevel) {
-            this.logLevel = logLevel;
-        }
     }
 
+    @Data
     public static class HotKey {
 
         private String start;
-
-        public String getStart() {
-            return start;
-        }
-
-        public void setStart(String start) {
-            this.start = start;
-        }
     }
 }

@@ -1,5 +1,8 @@
-package com.f5fe18bc.jxto.enums;
+package com.f5fe18bc.jx3.auto.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum HotKeyIdentifier {
 
     START(0),
@@ -9,9 +12,5 @@ public enum HotKeyIdentifier {
 
     HotKeyIdentifier(int i) {
         this.key = i;
-    }
-
-    public int getKey() {
-        return key;
     }
 }
