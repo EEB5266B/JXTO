@@ -1,6 +1,6 @@
-package com.f5fe18bc.jx3.auto;
+package com.f5fe18bc.jx3auto;
 
-import com.f5fe18bc.jx3.auto.application.HotKeyApp;
+import com.f5fe18bc.jx3auto.application.HotKeyApp;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -22,8 +22,9 @@ import java.io.IOException;
 /**
  * APP 类
  */
-@Slf4j
 public class Jx3AutoAPP extends Application {
+
+    public static final org.slf4j.Logger log = LoggerFactory.getLogger(Jx3AutoAPP.class);
 
     private TextField xField;
     private TextField yField;

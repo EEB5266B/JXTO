@@ -1,7 +1,7 @@
-package com.f5fe18bc.jx3.auto.config;
+package com.f5fe18bc.jx3auto.config;
 
-import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
@@ -13,9 +13,9 @@ import java.nio.file.Paths;
 /**
  * 设置类，用于读取和管理应用程序的设置
  */
-@Slf4j
-@Data
 public class Settings {
+
+    public static final Logger log = LoggerFactory.getLogger(Settings.class);
 
     private static final String SETTINGS_FILE = "settings.yaml";
     private static Settings settings;
@@ -84,15 +84,45 @@ public class Settings {
         }
     }
 
-    @Data
-    public static class System {
-
-        private String logLevel;
+    public System getSystem() {
+        return system;
     }
 
-    @Data
-    public static class HotKey {
+    public void setSystem(System system) {
+        this.system = system;
+    }
 
+    public HotKey getHotKey() {
+        return hotKey;
+    }
+
+    public void setHotKey(HotKey hotKey) {
+        this.hotKey = hotKey;
+    }
+
+
+    public static class System {
+        private String logLevel;
+
+        public String getLogLevel() {
+            return logLevel;
+        }
+
+        public void setLogLevel(String logLevel) {
+            this.logLevel = logLevel;
+        }
+    }
+
+
+    public static class HotKey {
         private String start;
+
+        public String getStart() {
+            return start;
+        }
+
+        public void setStart(String start) {
+            this.start = start;
+        }
     }
 }

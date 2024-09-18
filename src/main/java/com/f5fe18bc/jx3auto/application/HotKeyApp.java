@@ -1,10 +1,11 @@
-package com.f5fe18bc.jx3.auto.application;
+package com.f5fe18bc.jx3auto.application;
 
-import com.f5fe18bc.jx3.auto.enums.HotKeyIdentifier;
-import com.f5fe18bc.jx3.auto.config.Settings;
+import com.f5fe18bc.jx3auto.config.Settings;
+import com.f5fe18bc.jx3auto.enums.HotKeyIdentifier;
 import com.melloware.jintellitype.JIntellitype;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,10 +15,12 @@ import java.util.List;
 /**
  * 热键
  */
-@Slf4j
 public class HotKeyApp {
 
+    public static final Logger log = LoggerFactory.getLogger(HotKeyApp.class);
+
     public static final List<HotKey> hotKeyList = new ArrayList<>();
+
     public static void registerHotKey(Settings.HotKey hotKey) {
 
         if (hotKey != null) {
