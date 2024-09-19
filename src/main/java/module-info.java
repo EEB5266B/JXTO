@@ -10,6 +10,7 @@ module jx3auto {
     requires org.apache.commons.lang3;
     requires org.slf4j;
     requires org.yaml.snakeyaml;
+    requires ch.qos.logback.classic;
 
     exports com.f5fe18bc.jx3auto.config to org.yaml.snakeyaml;
     exports com.f5fe18bc.jx3auto;

@@ -1,23 +1,16 @@
 package com.f5fe18bc.jx3auto;
 
 import com.f5fe18bc.jx3auto.application.HotKeyApp;
+import com.f5fe18bc.jx3auto.application.LogApp;
+import com.f5fe18bc.jx3auto.config.Settings;
 import javafx.application.Application;
-import javafx.geometry.Pos;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.slf4j.LoggerFactory;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * APP 类
@@ -26,91 +19,30 @@ public class Jx3AutoAPP extends Application {
 
     public static final org.slf4j.Logger log = LoggerFactory.getLogger(Jx3AutoAPP.class);
 
-    private TextField xField;
-    private TextField yField;
-    private TextArea colorTextArea;
-
     @Override
     public void start(Stage primaryStage) {
 
         log.info("start APP");
 
-        Label xLabel = new Label("X Coordinate:");
-        xField = new TextField();
-        Label yLabel = new Label("Y Coordinate:");
-        yField = new TextField();
+        // 设置模糊效果
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setRadius(10);
+        dropShadow.setSpread(0.2);
+        dropShadow.setColor(Color.web("#f0f0f0"));
 
-        Button captureButton = new Button("Capture Screen");
-        captureButton.setOnAction(event -> captureScreen());
+        VBox vbox = new VBox();
+        vbox.setPadding(new Insets(20, 0, 0, 0));
+        vbox.setSpacing(10);
+        vbox.getChildren().addAll();
+        // 应用模糊效果
+        vbox.setEffect(dropShadow);
 
-        Button clickButton = new Button("Click at Coordinates");
-        clickButton.setOnAction(event -> clickAtCoordinates());
+        // 创建场景
+        Scene scene = new Scene(vbox, 400, 200);
 
-        Button getColorButton = new Button("Get Color at Coordinates");
-        getColorButton.setOnAction(event -> getColorAtCoordinates());
-
-        colorTextArea = new TextArea();
-        colorTextArea.setEditable(false);
-
-        VBox vbox = new VBox(10);
-        vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(xLabel, xField, yLabel, yField, captureButton, clickButton, getColorButton, colorTextArea);
-
-        Scene scene = new Scene(vbox, 300, 300);
-
-        primaryStage.setTitle("JXTO");
+        primaryStage.setTitle("JX3 Auto");
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private void captureScreen() {
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        GraphicsConfiguration gc = gd.getDefaultConfiguration();
-        Rectangle rect = gc.getBounds();
-        Robot robot;
-        try {
-            robot = new Robot();
-            BufferedImage image = robot.createScreenCapture(rect);
-            //保存路径
-            File screenFile = new File("img/");
-            if (!screenFile.exists()) {
-                screenFile.mkdir();
-            }
-            File f = new File(screenFile, System.currentTimeMillis() + ".png");
-
-            ImageIO.write(image, "png", f);
-
-        } catch (AWTException | IOException e) {
-            log.error("captureScreen", e);
-        }
-    }
-
-    private void clickAtCoordinates() {
-        int x = Integer.parseInt(xField.getText());
-        int y = Integer.parseInt(yField.getText());
-
-        try {
-            Robot robot = new Robot();
-            robot.mouseMove(x, y);
-            robot.delay(1000); // 延迟1秒
-            robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-            robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        } catch (AWTException e) {
-            log.error("clickAtCoordinates", e);
-        }
-    }
-
-    private void getColorAtCoordinates() {
-        int x = Integer.parseInt(xField.getText());
-        int y = Integer.parseInt(yField.getText());
-
-        try {
-            Robot robot = new Robot();
-            Color color = robot.getPixelColor(x, y);
-            colorTextArea.setText("Color at (" + x + ", " + y + "): " + color);
-        } catch (AWTException e) {
-            log.error("getColorAtCoordinates", e);
-        }
     }
 
     @Override
@@ -119,5 +51,16 @@ public class Jx3AutoAPP extends Application {
         log.info("stop app");
         HotKeyApp.unregisterHotKey();
         System.exit(0);
+    }
+
+    @Override
+    public void init() throws Exception {
+        super.init();
+        log.info("init app");
+        Settings settings = Settings.getSettings();
+
+        LogApp.changeRootLevel(settings.getSystem().getLogLevel());
+        HotKeyApp.registerHotKey(settings.getHotKey());
+        HotKeyApp.startHotKeyListener();
     }
 }

@@ -1,0 +1,1 @@
+jpackage --name jx3-auto --input target --main-jar jx3-auto-1.0.jar --type app-image
