@@ -1,7 +1,8 @@
 target/
 logs
 img
-settings.yaml
+/*/settings.yaml
+/*/dependency-reduced-pom.xml
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
