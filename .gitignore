@@ -1,7 +1,7 @@
 target/
 logs
 img
-/*/settings.yaml
+/settings.yaml
 /*/dependency-reduced-pom.xml
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
@@ -37,3 +37,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
