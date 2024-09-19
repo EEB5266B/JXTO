@@ -1,7 +1,7 @@
-package com.f5fe18bc.jx3auto.application;
+package com.eeb5266b.saltedfish.app.service;
 
-import com.f5fe18bc.jx3auto.config.Settings;
-import com.f5fe18bc.jx3auto.enums.HotKeyIdentifier;
+import com.eeb5266b.saltedfish.app.config.Settings;
+import com.eeb5266b.saltedfish.app.enums.HotKeyIdentifier;
 import com.melloware.jintellitype.JIntellitype;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

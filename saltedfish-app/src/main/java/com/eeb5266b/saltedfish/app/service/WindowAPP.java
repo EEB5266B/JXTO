@@ -1,4 +1,4 @@
-package com.f5fe18bc.jx3auto.application;
+package com.eeb5266b.saltedfish.app.service;
 
 import com.sun.jna.Native;
 import com.sun.jna.platform.win32.User32;

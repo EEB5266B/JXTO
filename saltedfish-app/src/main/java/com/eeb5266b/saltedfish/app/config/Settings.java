@@ -1,4 +1,4 @@
-package com.f5fe18bc.jx3auto.config;
+package com.eeb5266b.saltedfish.app.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

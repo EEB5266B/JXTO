@@ -1,4 +1,4 @@
-module jx3auto {
+module saltedfish.app {
     requires ch.qos.logback.core;
     requires com.sun.jna;
     requires com.sun.jna.platform;
@@ -12,6 +12,6 @@ module jx3auto {
     requires org.yaml.snakeyaml;
     requires ch.qos.logback.classic;
 
-    exports com.f5fe18bc.jx3auto.config to org.yaml.snakeyaml;
-    exports com.f5fe18bc.jx3auto;
+    exports com.eeb5266b.saltedfish.app.config to org.yaml.snakeyaml;
+    exports com.eeb5266b.saltedfish.app;
 }

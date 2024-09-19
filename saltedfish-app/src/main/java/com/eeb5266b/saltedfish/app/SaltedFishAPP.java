@@ -1,8 +1,8 @@
-package com.f5fe18bc.jx3auto;
+package com.eeb5266b.saltedfish.app;
 
-import com.f5fe18bc.jx3auto.application.HotKeyApp;
-import com.f5fe18bc.jx3auto.application.LogApp;
-import com.f5fe18bc.jx3auto.config.Settings;
+import com.eeb5266b.saltedfish.app.service.LogApp;
+import com.eeb5266b.saltedfish.app.config.Settings;
+import com.eeb5266b.saltedfish.app.service.HotKeyApp;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -15,9 +15,9 @@ import org.slf4j.LoggerFactory;
 /**
  * APP 类
  */
-public class Jx3AutoAPP extends Application {
+public class SaltedFishAPP extends Application {
 
-    public static final org.slf4j.Logger log = LoggerFactory.getLogger(Jx3AutoAPP.class);
+    public static final org.slf4j.Logger log = LoggerFactory.getLogger(SaltedFishAPP.class);
 
     @Override
     public void start(Stage primaryStage) {

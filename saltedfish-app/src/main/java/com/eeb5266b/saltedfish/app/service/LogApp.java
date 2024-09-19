@@ -1,4 +1,4 @@
-package com.f5fe18bc.jx3auto.application;
+package com.eeb5266b.saltedfish.app.service;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;

@@ -1,4 +1,4 @@
-package com.f5fe18bc.jx3auto.enums;
+package com.eeb5266b.saltedfish.app.enums;
 
 public enum HotKeyIdentifier {
 
